@@ -15,6 +15,11 @@ class Node(Generic[T]):
     next: Optional[Node[T]] = None
 
 
+class EmptyQueueError(Exception):
+    def __init__(self, msg) -> None:
+        super().__init__(msg)
+
+
 class AbstractQueue(ABC, Generic[T]):
     def __init__(self) -> None:
         self.size = 0
@@ -54,7 +59,12 @@ class Queue(AbstractQueue[T]):
         self.size += 1
 
     def pop(self) -> T:
-        pass
+        if self.head:
+            value = self.head.value
+            self.head = self.head.next
+            return value
+        else:
+            pass
 
     def front(self) -> T:
         pass

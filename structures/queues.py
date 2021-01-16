@@ -4,7 +4,15 @@ from abc import ABC, abstractmethod
 
 from typing import TypeVar, Generic, Optional
 
+from dataclasses import dataclass
+
 T = TypeVar('T')
+
+
+@dataclass
+class Node(Generic[T]):
+    value: T
+    next: Optional[Node[T]] = None
 
 
 class AbstractQueue(ABC, Generic[T]):
@@ -34,7 +42,16 @@ class Queue(AbstractQueue[T]):
         self.tail = None
 
     def push(self, element: T) -> None:
-        pass
+        node = Node[T](element)
+
+        if self.head is None:
+            self.head = node
+            self.tail = node
+        else:
+            self.tail.next = node
+            self.tail = node
+
+        self.size += 1
 
     def pop(self) -> T:
         pass

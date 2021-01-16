@@ -93,7 +93,12 @@ class Stack(AbstractQueue[T]):
         self.size += 1
 
     def pop(self) -> T:
-        pass
+        if self.head:
+            value = self.head.value
+            self.head = self.head.next
+            return value
+        else:
+            raise EmptyQueueError('Cannot pop from empty stack.')
 
     def front(self) -> T:
         pass

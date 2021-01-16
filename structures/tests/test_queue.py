@@ -71,6 +71,16 @@ class TestQueue(TestCase):
         self.assertEqual(queue.head.value, 7)
         self.assertEqual(queue.tail.value, 7)
 
+    def test_read_from_queue(self):
+        queue = Queue[int]()
+        queue.push(5)
+        queue.push(7)
+        value = queue.front()
+
+        self.assertEqual(queue.head.value, 5)
+        self.assertEqual(len(queue), 2)
+        self.assertEqual(value, 5)
+
 
 if __name__ == '__main__':
     main()

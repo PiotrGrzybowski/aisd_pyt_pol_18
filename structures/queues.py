@@ -71,7 +71,7 @@ class Queue(AbstractQueue[T]):
             raise EmptyQueueError('Can not pop from empty queue.')
 
     def front(self) -> T:
-        """
-        Front zwraca wartość elementu z początku kolejki. Rzuca
-        jeżeli jest pusta.
-        """
+        if self.head:
+            return self.head.value
+        else:
+            raise EmptyQueueError('Can not read from empty queue.')

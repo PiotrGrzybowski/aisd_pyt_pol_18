@@ -26,3 +26,18 @@ class AbstractQueue(ABC, Generic[T]):
     def __len__(self) -> int:
         return self.size
 
+
+class Queue(AbstractQueue[T]):
+    def __init__(self) -> None:
+        super().__init__()
+        self.head = None
+        self.tail = None
+
+    def push(self, element: T) -> None:
+        pass
+
+    def pop(self) -> T:
+        pass
+
+    def front(self) -> T:
+        pass

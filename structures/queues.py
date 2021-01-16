@@ -75,3 +75,25 @@ class Queue(AbstractQueue[T]):
             return self.head.value
         else:
             raise EmptyQueueError('Can not read from empty queue.')
+
+
+class Stack(AbstractQueue[T]):
+    def __init__(self):
+        super().__init__()
+        self.head = None
+
+    def push(self, element: T) -> None:
+        node = Node[T](element)
+
+        if self.head is None:
+            self.head = node
+        else:
+            node.next = self.head
+            self.head = node
+        self.size += 1
+
+    def pop(self) -> T:
+        pass
+
+    def front(self) -> T:
+        pass

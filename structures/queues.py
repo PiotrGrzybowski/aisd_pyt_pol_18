@@ -96,6 +96,7 @@ class Stack(AbstractQueue[T]):
         if self.head:
             value = self.head.value
             self.head = self.head.next
+            self.size -= 1
             return value
         else:
             raise EmptyQueueError('Cannot pop from empty stack.')

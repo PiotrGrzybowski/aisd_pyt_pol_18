@@ -33,6 +33,7 @@ class TestStack(TestCase):
 
         self.assertEqual(value, 9)
         self.assertEqual(stack.head.value, 7)
+        self.assertEqual(len(stack), 2)
 
 
 if __name__ == '__main__':

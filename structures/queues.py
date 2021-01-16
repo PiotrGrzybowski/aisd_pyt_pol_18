@@ -62,9 +62,16 @@ class Queue(AbstractQueue[T]):
         if self.head:
             value = self.head.value
             self.head = self.head.next
+            self.size -= 1
+
+            if self.head is None:
+                self.tail = None
             return value
         else:
-            pass
+            raise EmptyQueueError('Can not pop from empty queue.')
 
     def front(self) -> T:
-        pass
+        """
+        Front zwraca wartość elementu z początku kolejki. Rzuca
+        jeżeli jest pusta.
+        """

@@ -102,4 +102,7 @@ class Stack(AbstractQueue[T]):
             raise EmptyQueueError('Cannot pop from empty stack.')
 
     def front(self) -> T:
-        pass
+        if self.head:
+            return self.head.value
+        else:
+            raise EmptyQueueError('Cannot read from empty stack.')

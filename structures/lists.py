@@ -28,6 +28,14 @@ class LinkedList(Generic[T]):
 
             pointer.next = node
 
+    def __len__(self) -> int:
+        length = 0
+        pointer = self.head
+        while pointer is not None:
+            length += 1
+            pointer = pointer.next
+        return length
+
 
 if __name__ == '__main__':
     values = LinkedList[str]()
@@ -38,3 +46,5 @@ if __name__ == '__main__':
     print(values.head)
     print(values.head.next)
     print(values.head.next.next)
+
+    print(len(values))

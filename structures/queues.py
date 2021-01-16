@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-
 from typing import TypeVar, Generic, Optional
-
 from dataclasses import dataclass
 
 T = TypeVar('T')
@@ -38,6 +36,9 @@ class AbstractQueue(ABC, Generic[T]):
 
     def __len__(self) -> int:
         return self.size
+
+    # def __bool__(self) -> bool:
+    #     pass
 
 
 class Queue(AbstractQueue[T]):

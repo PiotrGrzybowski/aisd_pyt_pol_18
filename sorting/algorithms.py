@@ -23,10 +23,26 @@ def generate_reversed_list(length: int) -> List[int]:
 
 
 def bubble_sort(values: List) -> None:
-    pass
+    for n in range(len(values)):
+        for i in range(len(values) - 1 - n):
+            if values[i] > values[i + 1]:
+                values[i], values[i + 1] = values[i + 1], values[i]
+
+
+def bubble_sort_smart(values: List) -> None:
+    n = 0
+    swap_occurred = True
+
+    while n < len(values) and swap_occurred:
+        swap_occurred = False
+        for i in range(len(values) - 1 - n):
+            if values[i] > values[i + 1]:
+                values[i], values[i + 1] = values[i + 1], values[i]
+                swap_occurred = True
 
 
 if __name__ == '__main__':
     values = [8, 7, 6, 5, 4, 3, 2, 1]
-    bubble_sort(values)
+    values = [1, 2, 3, 4, 5, 6, 7, 8]
+    bubble_sort_smart(values)
     print(values)

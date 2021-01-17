@@ -1,5 +1,13 @@
+import json
+
 from abc import ABC, abstractmethod
 from typing import List
+
+from sorting.algorithms import generate_ordered_list, generate_reversed_list, generate_random_list
+
+ORDERED = 'ordered'
+REVERSED = 'reversed'
+RANDOM = 'random'
 
 
 class SoringAlgorithm(ABC):
@@ -17,6 +25,7 @@ class SoringAlgorithm(ABC):
 
 class BubbleSort(SoringAlgorithm):
     def sort(self, values: List) -> None:
+        self.comparisons = 0
         for n in range(len(values)):
             for i in range(len(values) - 1 - n):
                 if self.gt(values[i], values[i + 1]):
@@ -25,6 +34,7 @@ class BubbleSort(SoringAlgorithm):
 
 class BubbleSortSmart(SoringAlgorithm):
     def sort(self, values: List) -> None:
+        self.comparisons = 0
         n = 0
         swap_occurred = True
 
@@ -37,7 +47,7 @@ class BubbleSortSmart(SoringAlgorithm):
 
 
 def simulate(algorithm: SoringAlgorithm, max_length: int):
-    f"""
+    """
     Przyjmuje algorytm, za pomocą którego zostanie wykonane sortowanie list:
     - Uporządkowanej,
     - Odwrotnie uporządkowanej
@@ -59,11 +69,30 @@ def simulate(algorithm: SoringAlgorithm, max_length: int):
     
      - Zapisz słownikik wynikowy do pliku json o nazwie: f'{algorithm.__class__.__name__}_{max_length}.json'
     """
-    pass
+    result = {
+        ORDERED: {},
+        REVERSED: {},
+        RANDOM: {}
+    }
+
+    for length in range(1, max_length + 1):
+        ordered_list = generate_ordered_list(length)
+        algorithm.sort(ordered_list)
+        result[ORDERED][length] = algorithm.comparisons
+
+        reversed_list = generate_reversed_list(length)
+        algorithm.sort(reversed_list)
+        result[REVERSED][length] = algorithm.comparisons
+
+        random_list = generate_random_list(length, 0, max_length)
+        algorithm.sort(random_list)
+        result[RANDOM][length] = algorithm.comparisons
+
+    filename = f'{algorithm.__class__.__name__}_{max_length}.json'
+    with open(filename, 'w') as f:
+        json.dump(result, f, indent=4, sort_keys=True)
+
 
 if __name__ == '__main__':
-    values = [1, 2, 3, 4, 5, 6, 7, 8]
     algorithm = BubbleSortSmart()
-    algorithm.sort(values)
-    print(values)
-    print(algorithm.comparisons)
+    simulate(algorithm, 100)

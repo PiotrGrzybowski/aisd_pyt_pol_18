@@ -44,5 +44,7 @@ def bubble_sort_smart(values: List) -> None:
 if __name__ == '__main__':
     values = [8, 7, 6, 5, 4, 3, 2, 1]
     values = [1, 2, 3, 4, 5, 6, 7, 8]
+
+    values = ['S', 'A', 'C', 'G', 'a']
     bubble_sort_smart(values)
     print(values)

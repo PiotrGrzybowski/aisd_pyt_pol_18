@@ -45,11 +45,5 @@ def show_complexities_types(filenames, types):
 
 
 if __name__ == '__main__':
-    # show_algorithm_complexities('BubbleSort_1000.json')
-    # show_algorithm_complexities('QuickSort_1000.json')
-
-    filenames = ['BubbleSort_1000.json', 'QuickSort_2000.json']
+    filenames = ['BubbleSortSmart_200.json', 'BubbleSort_200.json']
     show_complexities_types(filenames, [ORDERED, REVERSED, RANDOM])
-    # show_complexities(filenames, ORDERED)
-    # show_complexities(filenames, REVERSED)
-    # show_complexities(filenames, RANDOM)

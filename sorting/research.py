@@ -3,7 +3,7 @@ import json
 from abc import ABC, abstractmethod
 from typing import List
 
-from sorting.algorithms import generate_ordered_list, generate_reversed_list, generate_random_list
+from sorting.algorithms import generate_reversed_list, generate_ordered_list, generate_random_list
 
 ORDERED = 'ordered'
 REVERSED = 'reversed'
@@ -45,6 +45,7 @@ class BubbleSortSmart(SoringAlgorithm):
                     values[i], values[i + 1] = values[i + 1], values[i]
                     swap_occurred = True
 
+            n += 1
 
 def simulate(algorithm: SoringAlgorithm, max_length: int):
     """
@@ -95,4 +96,5 @@ def simulate(algorithm: SoringAlgorithm, max_length: int):
 
 if __name__ == '__main__':
     algorithm = BubbleSortSmart()
-    simulate(algorithm, 100)
+    simulate(algorithm, 200)
+

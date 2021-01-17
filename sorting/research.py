@@ -15,6 +15,14 @@ class SoringAlgorithm(ABC):
         return value_1 > value_2
 
 
+class BubbleSort(SoringAlgorithm):
+    def sort(self, values: List) -> None:
+        for n in range(len(values)):
+            for i in range(len(values) - 1 - n):
+                if self.gt(values[i], values[i + 1]):
+                    values[i], values[i + 1] = values[i + 1], values[i]
+
+
 class BubbleSortSmart(SoringAlgorithm):
     def sort(self, values: List) -> None:
         n = 0
@@ -29,7 +37,7 @@ class BubbleSortSmart(SoringAlgorithm):
 
 
 if __name__ == '__main__':
-    values = [9, 2, 1, 3, 4, 56, 7]
+    values = [1, 2, 3, 4, 5, 6, 7, 8]
     algorithm = BubbleSortSmart()
     algorithm.sort(values)
     print(values)

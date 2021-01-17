@@ -1,3 +1,4 @@
+import random
 from typing import List
 
 
@@ -5,21 +6,21 @@ def generate_random_list(length: int, start: int, end: int) -> List[int]:
     """Zwraca listę liczb losowo uporządkowanych o długości len z zakresu
     9,4,3,111,24346,...
     """
-    pass
+    return [random.randint(start, end) for _ in range(length)]
 
 
 def generate_ordered_list(length: int) -> List[int]:
     """Zwraca listę wartości uporządkowanych od 0 do lenght
     0,1,2,3,4,5...,length-1
     """
-    pass
+    return list(range(length))
 
 
 def generate_reversed_list(length: int) -> List[int]:
     """Zwraca listę wartości odwrotnie uporządkowanych od 0 do lenght
     length-1,length-2,length-3,length,...,0
     """
-    pass
+    return list(reversed(range(length)))
 
 
 def bubble_sort(values: List) -> None:

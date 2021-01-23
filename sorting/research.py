@@ -3,6 +3,7 @@ import json
 from abc import ABC, abstractmethod
 from typing import List
 from tqdm import tqdm
+
 from sorting.algorithms import generate_reversed_list, generate_ordered_list, generate_random_list
 
 ORDERED = 'ordered'
@@ -60,6 +61,24 @@ class InsertionSort(SortingAlgorithm):
             values[current_position] = current_value
 
 
+class QuickSort(SortingAlgorithm):
+    def partition(self, values: List, low: int, high: int) -> int:
+        pivot = values[high]
+        j = low - 1
+
+        for i in range(low, high):
+            if values[i] < pivot:
+                self.comparisons += 1
+                j += 1
+                values[i], values[j] = values[j], values[i]
+        j += 1
+        values[j], values[high] = values[high], values[j]
+        return j
+
+    def sort(self, values: List) -> None:
+        pass
+
+
 def simulate(algorithm: SortingAlgorithm, max_length: int):
     """
     Przyjmuje algorytm, za pomocą którego zostanie wykonane sortowanie list:
@@ -115,4 +134,3 @@ if __name__ == '__main__':
     # print(values)
     # InsertionSort().sort(values)
     # print(values)
-

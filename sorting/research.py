@@ -1,10 +1,13 @@
 import json
-
+import sys
+import random
 from abc import ABC, abstractmethod
 from typing import List
 from tqdm import tqdm
 
 from sorting.algorithms import generate_reversed_list, generate_ordered_list, generate_random_list
+
+sys.setrecursionlimit(1500)
 
 ORDERED = 'ordered'
 REVERSED = 'reversed'
@@ -63,6 +66,8 @@ class InsertionSort(SortingAlgorithm):
 
 class QuickSort(SortingAlgorithm):
     def partition(self, values: List, low: int, high: int) -> int:
+        pivot_index = random.randint(low, high)
+        values[pivot_index], values[high] = values[high], values[pivot_index]
         pivot = values[high]
         j = low - 1
 
@@ -136,12 +141,6 @@ def simulate(algorithm: SortingAlgorithm, max_length: int):
 
 if __name__ == '__main__':
     algorithm = QuickSort()
-    # simulate(algorithm, 1000)
-
-    values = [8, 6, 7, 0, 2, 4, 1, 5]
-    algorithm.sort(values)
-    print(values)
-    # values = generate_reversed_list(10)
-    # print(values)
-    # InsertionSort().sort(values)
-    # print(values)
+    # simulate(algorithm, 3000)
+    algorithm.sort(generate_random_list(100000, 0, 100))
+    print(algorithm.comparisons)

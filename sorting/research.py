@@ -79,9 +79,12 @@ class QuickSort(SortingAlgorithm):
         self.comparisons = 0
 
         def sort_help(low: int, high: int) -> None:
-            pass
+            if low < high:
+                index = self.partition(values, low, high)
+                sort_help(low, index - 1)
+                sort_help(index + 1, high)
 
-        pass
+        sort_help(0, len(values) - 1)
 
 
 def simulate(algorithm: SortingAlgorithm, max_length: int):
@@ -136,8 +139,7 @@ if __name__ == '__main__':
     # simulate(algorithm, 1000)
 
     values = [8, 6, 7, 0, 2, 4, 1, 5]
-    i = algorithm.partition(values, 0, 7)
-    print(i)
+    algorithm.sort(values)
     print(values)
     # values = generate_reversed_list(10)
     # print(values)

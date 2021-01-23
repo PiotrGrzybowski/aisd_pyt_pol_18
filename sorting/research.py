@@ -76,6 +76,11 @@ class QuickSort(SortingAlgorithm):
         return j
 
     def sort(self, values: List) -> None:
+        self.comparisons = 0
+
+        def sort_help(low: int, high: int) -> None:
+            pass
+
         pass
 
 
@@ -127,9 +132,13 @@ def simulate(algorithm: SortingAlgorithm, max_length: int):
 
 
 if __name__ == '__main__':
-    algorithm = InsertionSort()
-    simulate(algorithm, 1000)
+    algorithm = QuickSort()
+    # simulate(algorithm, 1000)
 
+    values = [8, 6, 7, 0, 2, 4, 1, 5]
+    i = algorithm.partition(values, 0, 7)
+    print(i)
+    print(values)
     # values = generate_reversed_list(10)
     # print(values)
     # InsertionSort().sort(values)

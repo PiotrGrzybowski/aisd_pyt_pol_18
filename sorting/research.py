@@ -10,7 +10,7 @@ REVERSED = 'reversed'
 RANDOM = 'random'
 
 
-class SoringAlgorithm(ABC):
+class SortingAlgorithm(ABC):
     def __init__(self):
         self.comparisons = 0
 
@@ -23,7 +23,7 @@ class SoringAlgorithm(ABC):
         return value_1 > value_2
 
 
-class BubbleSort(SoringAlgorithm):
+class BubbleSort(SortingAlgorithm):
     def sort(self, values: List) -> None:
         self.comparisons = 0
         for n in range(len(values)):
@@ -32,7 +32,7 @@ class BubbleSort(SoringAlgorithm):
                     values[i], values[i + 1] = values[i + 1], values[i]
 
 
-class BubbleSortSmart(SoringAlgorithm):
+class BubbleSortSmart(SortingAlgorithm):
     def sort(self, values: List) -> None:
         self.comparisons = 0
         n = 0
@@ -47,7 +47,20 @@ class BubbleSortSmart(SoringAlgorithm):
 
             n += 1
 
-def simulate(algorithm: SoringAlgorithm, max_length: int):
+
+class InsertionSort(SortingAlgorithm):
+    def sort(self, values: List) -> None:
+        self.comparisons = 0
+        for i in range(1, len(values)):
+            current_value = values[i]
+            current_position = i
+            while current_position > 0 and self.gt(values[current_position - 1], current_value):
+                values[current_position] = values[current_position - 1]
+                current_position -= 1
+            values[current_position] = current_value
+
+
+def simulate(algorithm: SortingAlgorithm, max_length: int):
     """
     Przyjmuje algorytm, za pomocą którego zostanie wykonane sortowanie list:
     - Uporządkowanej,
@@ -97,4 +110,5 @@ def simulate(algorithm: SoringAlgorithm, max_length: int):
 if __name__ == '__main__':
     algorithm = BubbleSortSmart()
     simulate(algorithm, 200)
+
 

@@ -41,9 +41,16 @@ def show_complexities_types(filenames, types):
             figure.add_trace(go.Scatter(x=list(domain), y=list(result[order_type].values()), mode='lines+markers',
                                         name=f"{filename.split('_')[0]}_{order_type}"))
 
+    figure.update_layout({
+        'font_size': 18
+    })
     figure.show()
 
 
 if __name__ == '__main__':
-    filenames = ['BubbleSortSmart_200.json', 'BubbleSort_200.json']
+    filenames = [
+        'BubbleSortSmart_200.json',
+        'BubbleSort_200.json',
+        'InsertionSort_200.json'
+    ]
     show_complexities_types(filenames, [ORDERED, REVERSED, RANDOM])

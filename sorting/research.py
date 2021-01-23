@@ -109,7 +109,7 @@ def simulate(algorithm: SortingAlgorithm, max_length: int):
 
 if __name__ == '__main__':
     algorithm = InsertionSort()
-    simulate(algorithm, 200000)
+    simulate(algorithm, 1000)
 
     # values = generate_reversed_list(10)
     # print(values)

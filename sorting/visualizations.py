@@ -51,6 +51,7 @@ if __name__ == '__main__':
     filenames = [
         'BubbleSortSmart_200.json',
         'BubbleSort_200.json',
-        'InsertionSort_200.json'
+        # 'InsertionSort_200.json',
+        'InsertionSort_1000.json',
     ]
     show_complexities_types(filenames, [ORDERED, REVERSED, RANDOM])

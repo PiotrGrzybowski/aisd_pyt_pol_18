@@ -2,7 +2,7 @@ import json
 
 from abc import ABC, abstractmethod
 from typing import List
-
+from tqdm import tqdm
 from sorting.algorithms import generate_reversed_list, generate_ordered_list, generate_random_list
 
 ORDERED = 'ordered'
@@ -89,7 +89,7 @@ def simulate(algorithm: SortingAlgorithm, max_length: int):
         RANDOM: {}
     }
 
-    for length in range(1, max_length + 1):
+    for length in tqdm(range(1, max_length + 1)):
         ordered_list = generate_ordered_list(length)
         algorithm.sort(ordered_list)
         result[ORDERED][length] = algorithm.comparisons
@@ -109,7 +109,7 @@ def simulate(algorithm: SortingAlgorithm, max_length: int):
 
 if __name__ == '__main__':
     algorithm = InsertionSort()
-    simulate(algorithm, 200)
+    simulate(algorithm, 200000)
 
     # values = generate_reversed_list(10)
     # print(values)

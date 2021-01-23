@@ -111,4 +111,8 @@ if __name__ == '__main__':
     algorithm = BubbleSortSmart()
     simulate(algorithm, 200)
 
+    values = generate_reversed_list(10)
+    print(values)
+    InsertionSort().sort(values)
+    print(values)
 

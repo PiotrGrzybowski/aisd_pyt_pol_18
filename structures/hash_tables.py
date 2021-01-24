@@ -56,7 +56,7 @@ if __name__ == '__main__':
     names = HashSet()
     for _ in range(100000):
         names.add(random_str(5))
-    # print(names.buckets_str())
+    print(names.buckets_str())
     names.add("Piotr")
 
     print("Piotr" in {"Piotr"})

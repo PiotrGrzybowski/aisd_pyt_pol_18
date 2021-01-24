@@ -5,16 +5,23 @@ class HashSet:
         self.initial_buckets = initial_buckets
         self.size = 0
 
-        self.buckets = self._build_initial_buckets()
+        self.buckets = self._build_buckets(self.initial_buckets)
 
     def add(self, value):
-        hash_value = hash(value)
-        bucket_index = hash_value % (len(self.buckets))
-        self.buckets[bucket_index].append(value)
-        self.size += 1
+        if not self.contains(value):
+            bucket_index = hash(value) % len(self.buckets)
+            self.buckets[bucket_index].append(value)
+            self.size += 1
 
-    def _build_initial_buckets(self):
-        return [[] for _ in range(self.initial_buckets)]
+    def contains(self, value):
+        bucket_index = hash(value) % len(self.buckets)
+        return value in self.buckets[bucket_index]
+
+    def _build_buckets(self, buckets_count):
+        return [[] for _ in range(buckets_count)]
+
+    def _increase_buckets_count(self, target_buckets_count):
+        pass
 
     def buckets_str(self):
         return '\n'.join([f'{i:2}: {str(bucket)}' for i, bucket in enumerate(self.buckets)])
@@ -23,5 +30,25 @@ class HashSet:
         elements = ', '.join([str(element) for bucket in self.buckets for element in bucket])
         return f'{{{elements}}}'
 
+
 if __name__ == '__main__':
     names = HashSet()
+    names.add("Piotr")
+    names.add("Ola")
+    names.add("123")
+    names.add("Adam")
+    names.add("Ewa")
+    names.add("Python")
+    names.add("PC")
+    names.add("PApple")
+    names.add("PPiotr")
+    names.add("POla")
+    names.add("P123")
+    names.add("PAdam")
+    names.add("PEwa")
+    names.add("Python")
+    names.add("sPC")
+    names.add("apple")
+
+    print(names.buckets_str())
+    print(names.contains("Piotr"))

@@ -16,6 +16,9 @@ class HashSet:
     def _build_initial_buckets(self):
         return [[] for _ in range(self.initial_buckets)]
 
+    def buckets_str(self):
+        return '\n'.join([f'{i:2}: {str(bucket)}' for i, bucket in enumerate(self.buckets)])
+
     def __str__(self) -> str:
         elements = ', '.join([str(element) for bucket in self.buckets for element in bucket])
         return f'{{{elements}}}'

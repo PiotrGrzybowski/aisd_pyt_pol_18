@@ -41,6 +41,9 @@ class HashSet:
         elements = ', '.join([str(element) for bucket in self.buckets for element in bucket])
         return f'{{{elements}}}'
 
+    def __contains__(self, value):
+        return self.contains(value)
+
 
 def random_str(N):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
@@ -52,4 +55,6 @@ if __name__ == '__main__':
         names.add(random_str(5))
     # print(names.buckets_str())
     names.add("Piotr")
-    print(names.contains("Piotr"))
+
+    print("Piotr" in {"Piotr"})
+    print("Piotr" in names)

@@ -16,6 +16,9 @@ class HashSet:
     def _build_initial_buckets(self):
         return [[] for _ in range(self.initial_buckets)]
 
+    def __str__(self) -> str:
+        elements = ', '.join([str(element) for bucket in self.buckets for element in bucket])
+        return f'{{{elements}}}'
 
 if __name__ == '__main__':
     names = HashSet()

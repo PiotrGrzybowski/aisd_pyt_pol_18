@@ -1,3 +1,7 @@
+import string
+import random
+
+
 class HashSet:
     def __init__(self, payload_factor: int = 0.75, increase_factor: int = 2, initial_buckets: int = 4) -> None:
         self.payload_factor = payload_factor
@@ -38,24 +42,14 @@ class HashSet:
         return f'{{{elements}}}'
 
 
+def random_str(N):
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
+
+
 if __name__ == '__main__':
     names = HashSet()
+    for _ in range(100000):
+        names.add(random_str(5))
+    # print(names.buckets_str())
     names.add("Piotr")
-    names.add("Ola")
-    names.add("123")
-    names.add("Adam")
-    names.add("Ewa")
-    names.add("Python")
-    names.add("PC")
-    names.add("PApple")
-    names.add("PPiotr")
-    names.add("POla")
-    names.add("P123")
-    names.add("PAdam")
-    names.add("PEwa")
-    names.add("Python")
-    names.add("sPC")
-    names.add("apple")
-
-    print(names.buckets_str())
     print(names.contains("Piotr"))

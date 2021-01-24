@@ -33,6 +33,8 @@ def two_sum_one_pass(values: List[int], target: int) -> Tuple[int, int]:
 
 if __name__ == '__main__':
     values = [2, 3, 5, 7, 324, 22, 14]
-    values = generate_random_list()
+    values = generate_random_list(1000000, 0, 10)
     target = 338
-    print(two_sum_one_pass(values, target))
+    values.append(324)
+    values.append(14)
+    print(two_sum(values, target))

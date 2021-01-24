@@ -9,6 +9,8 @@ class HashSet:
 
     def add(self, value):
         if not self.contains(value):
+            if self.size / len(self.buckets) >= self.payload_factor:
+                self._increase_buckets_count(self.increase_factor * len(self.buckets))
             bucket_index = hash(value) % len(self.buckets)
             self.buckets[bucket_index].append(value)
             self.size += 1
@@ -21,7 +23,12 @@ class HashSet:
         return [[] for _ in range(buckets_count)]
 
     def _increase_buckets_count(self, target_buckets_count):
-        pass
+        new_buckets = self._build_buckets(target_buckets_count)
+        for bucket in self.buckets:
+            for value in bucket:
+                bucket_index = hash(value) % len(new_buckets)
+                new_buckets[bucket_index].append(value)
+        self.buckets = new_buckets
 
     def buckets_str(self):
         return '\n'.join([f'{i:2}: {str(bucket)}' for i, bucket in enumerate(self.buckets)])

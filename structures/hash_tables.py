@@ -19,6 +19,9 @@ class HashSet:
             self.buckets[bucket_index].append(value)
             self.size += 1
 
+    def delete(self, value):
+        pass
+
     def contains(self, value):
         bucket_index = hash(value) % len(self.buckets)
         return value in self.buckets[bucket_index]

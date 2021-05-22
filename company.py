@@ -18,7 +18,7 @@ class Company:
             return False
         else:
             return self.name == other.name and \
-                   self.size == other.size and \
+                   self.size == other.max_size and \
                    self.president == other.president and \
                    self.tax_id == other.tax_id
 

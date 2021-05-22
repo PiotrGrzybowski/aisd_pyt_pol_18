@@ -9,7 +9,7 @@ class TestQueue(TestCase):
 
         self.assertIsNone(queue.head)
         self.assertIsNone(queue.tail)
-        self.assertEqual(queue.size, 0)
+        self.assertEqual(queue.max_size, 0)
 
     def test_push_to_empty_queue(self):
         queue = Queue[int]()
